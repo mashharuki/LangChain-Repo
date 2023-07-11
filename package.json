@@ -1,0 +1,17 @@
+{
+  "name": "LangChain-Repo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/mashharuki/LangChain-Repo.git",
+  "author": "",
+  "license": "MIT",
+  "workspaces": {
+    "packages": [
+      "pkgs/*"
+    ]
+  },
+  "private": true,
+  "scripts": {
+    "sample:01_model": "yarn workspace sample 01_model"
+  }
+}
