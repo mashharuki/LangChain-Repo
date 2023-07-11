@@ -16,6 +16,10 @@
     "openai": "^3.2.1"
   },
   "scripts": {
-    "01_model": "ts-node ./src/01_model.ts"
+    "01_model": "ts-node ./src/01_model.ts",
+    "02_prompt_template01": "ts-node ./src/02_prompt_template01.ts",
+    "02_prompt_template02": "ts-node ./src/02_prompt_template02.ts",
+    "03_chains01_llmchain": "ts-node ./src/03_chains01_llmchain.ts",
+    "03_chains02_sequentialchain": "ts-node ./src/03_chains02_sequentialchain.ts"
   }
 }

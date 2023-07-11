@@ -12,6 +12,10 @@
   },
   "private": true,
   "scripts": {
-    "sample:01_model": "yarn workspace sample 01_model"
+    "sample:01_model": "yarn workspace sample 01_model",
+    "sample:02_prompt_template01": "yarn workspace sample 02_prompt_template01",
+    "sample:02_prompt_template02": "yarn workspace sample 02_prompt_template02",
+    "sample:03_chains01_llmchain": "yarn workspace sample 03_chains01_llmchain",
+    "sample:03_chains02_sequentialchain": "yarn workspace sample 03_chains02_sequentialchain"
   }
 }

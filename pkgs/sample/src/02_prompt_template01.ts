@@ -7,7 +7,7 @@ export const run = async () => {
     inputVariables: ["product"],
     template: "カラフルな{product}を作る会社の良い名前を考えてください。",
   });
-  console.log(await prompt.format({ product: "靴下" }));
+  console.log("res:", await prompt.format({ product: "靴下" }));
 };
 
 run();

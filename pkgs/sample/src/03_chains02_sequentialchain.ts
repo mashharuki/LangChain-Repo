@@ -4,6 +4,13 @@ import { LLMChain, SimpleSequentialChain } from "langchain/chains";
 
 require("dotenv").config();
 
+const {
+  OPENAI_API_KEY
+} = process.env;
+
+/**
+ * run method
+ */
 export const run = async () => {
   //1つ目のChain
   const outlinePromptTemplate = new PromptTemplate({
@@ -14,7 +21,10 @@ export const run = async () => {
     概要:`,
   });
 
-  const outlineModel = new OpenAI();
+  const outlineModel = new OpenAI({ 
+    openAIApiKey: OPENAI_API_KEY
+  });
+  // LLMChainを作成する
   const outlineChain = new LLMChain({
     llm: outlineModel,
     prompt: outlinePromptTemplate,
@@ -28,19 +38,24 @@ export const run = async () => {
     劇の概要: {outline}
     批評:`,
   });
-  const reviewModel = new OpenAI();
+
+  const reviewModel = new OpenAI({ 
+    openAIApiKey: OPENAI_API_KEY
+  });
+  // LLMChainを作成する
   const reviewChain = new LLMChain({
     llm: reviewModel,
     prompt: reviewPromptTemplate,
   });
 
+  // LLMChainを連続して実行する。
   const overallChain = new SimpleSequentialChain({
     chains: [outlineChain, reviewChain],
     verbose: true,
   });
 
   const review = await overallChain.run("夕暮れ時のビーチで起こる悲劇");
-  console.log(review);
+  console.log("実行結果：", review);
 };
 
 run();
