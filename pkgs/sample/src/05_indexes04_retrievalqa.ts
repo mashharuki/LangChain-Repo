@@ -5,10 +5,23 @@ import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 
 require("dotenv").config();
 
+const {
+  OPENAI_API_KEY
+} = process.env;
+
+/**
+ * run method
+ */
 const run = async () => {
-  const vectorStore = await HNSWLib.load("store", new OpenAIEmbeddings());
-  const model = new OpenAI({});
+  const vectorStore = await HNSWLib.load("store", new OpenAIEmbeddings({
+    openAIApiKey: OPENAI_API_KEY
+  }));
+  const model = new OpenAI({
+    openAIApiKey: OPENAI_API_KEY
+  });
+
   const chain = RetrievalQAChain.fromLLM(model, vectorStore.asRetriever());
+  // プロンプトを入力して出力を得る。
   const res = await chain.call({
     query: "アレックスは何者？",
   });

@@ -5,9 +5,20 @@ import { Calculator } from "langchain/tools/calculator";
 
 require("dotenv").config();
 
+const {
+  OPENAI_API_KEY,
+  SERPAPI_API_KEY
+} = process.env;
+
+/**
+ * run method
+ */
 export const run = async () => {
-  const model = new ChatOpenAI({ modelName: "gpt-4" });
-  const tools = [new SerpAPI(), new Calculator()];
+  const model = new ChatOpenAI({ 
+    openAIApiKey: OPENAI_API_KEY
+  });
+
+  const tools = [new SerpAPI(SERPAPI_API_KEY), new Calculator()];
 
   const executor = await initializeAgentExecutorWithOptions(tools, model, {
     agentType: "chat-zero-shot-react-description",
@@ -17,7 +28,7 @@ export const run = async () => {
 
   const input = `今日の東京の最高気温を摂氏で調べてください。またその数値を2倍した値はいくつですか？`;
   console.log(`次の処理を実行します："${input}"...`);
-
+  // プロンプトを入力してアウトプットを出力させる。
   const result = await executor.call({ input });
   console.log(`Got output ${result.output}`);
   console.log(

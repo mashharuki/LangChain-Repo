@@ -6,7 +6,7 @@ export const run = async () => {
     { branch: "main", recursive: false, unknown: "warn" }
   );
   const docs = await loader.load();
-  console.log(docs);
+  console.log("res:", docs);
 };
 
 run();

@@ -20,6 +20,13 @@
     "02_prompt_template01": "ts-node ./src/02_prompt_template01.ts",
     "02_prompt_template02": "ts-node ./src/02_prompt_template02.ts",
     "03_chains01_llmchain": "ts-node ./src/03_chains01_llmchain.ts",
-    "03_chains02_sequentialchain": "ts-node ./src/03_chains02_sequentialchain.ts"
+    "03_chains02_sequentialchain": "ts-node ./src/03_chains02_sequentialchain.ts",
+    "04_memory01": "ts-node ./src/04_memory01.ts",
+    "04_memory02_chatdemo": "ts-node ./src/04_memory02_chatdemo.ts",
+    "05_indexes01_loader": "ts-node ./src/05_indexes01_loader.ts",
+    "05_indexes02_createstore": "ts-node ./src/05_indexes02_createstore.ts",
+    "05_indexes03_retrieve": "ts-node ./src/05_indexes03_retrieve.ts",
+    "05_indexes04_retrievalqa": "ts-node ./src/05_indexes04_retrievalqa.ts",
+    "06_agents": "ts-node ./src/06_agents.ts"
   }
 }
