@@ -156,3 +156,4 @@ LangChainおよびOpenAI APIを利用したアプリの学習用リポジトリ
 7. [LLM連携アプリの開発を支援するライブラリ LangChain の使い方 (3) - エージェント - note](https://note.com/npaka/n/n6b7a07e492f1)
 8. [LangChainの概要と使い方 - Zenn](https://zenn.dev/umi_mori/books/prompt-engineer/viewer/langchain_overview)
 9. [ベクトル特化型データベースサービス「Pinecone」でセマンティック・キーワード検索をやってみた](https://dev.classmethod.jp/articles/dive-deep-into-modern-data-saas-about-pinecone/)
+10. [Next.jsとAI技術を使用したアプリ構築の講座紹介(ChatGPT、DALLE、Whisper、Embedding、LangChain)](https://zenn.dev/hathle/articles/nextjs-supabase-opneai)
