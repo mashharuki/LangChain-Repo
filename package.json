@@ -23,6 +23,8 @@
     "sample:05_indexes02_createstore": "yarn workspace sample 05_indexes02_createstore",
     "sample:05_indexes03_retrieve": "yarn workspace sample 05_indexes03_retrieve",
     "sample:05_indexes04_retrievalqa": "yarn workspace sample 05_indexes04_retrievalqa",
-    "sample:06_agents": "yarn workspace sample 06_agents"
+    "sample:06_agents": "yarn workspace sample 06_agents",
+    "app:dev": "yarn workspace sample-app dev",
+    "app:build": "yarn workspace sample-app build"
   }
 }
