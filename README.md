@@ -149,6 +149,51 @@ LangChainおよびOpenAI APIを利用したアプリの学習用リポジトリ
     yarn app:dev
     ```
 
+## supabaseでテーブルを作成する方法
+
+```sql
+-- posts テーブル作成SQL
+create table posts (
+  id uuid not null default uuid_generate_v4() primary key,
+  name text not null,
+  prompt text not null,
+  image_url text not null,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+-- posts テーブルRLS設定
+alter table posts enable row level security;
+create policy "誰でも参照可能" on posts for select using ( true );
+create policy "誰でも参照可能2" on posts for insert with check ( true );
+
+-- storage 作成
+insert into storage.buckets (id, name, public) values ('posts', 'posts', true);
+create policy "誰でも参照可能" on storage.objects for select using ( bucket_id = 'posts' );
+create policy "誰でも参照可能2" on storage.objects for insert with check ( bucket_id = 'posts' );
+```
+
+## コンソールでsupabaseにログインする方法
+
+```bash
+npx supabase login
+```
+
+## supabaseを初期化するコマンド
+
+```bash
+npx supabase init
+```
+
+## プロジェクトとリンクさせる方法
+
+```bash
+npx supabase link --project-ref <プロジェクトのref IDを貼り付ける>
+```
+## テーブル操作用の型情報を生成するコマンド
+
+```bash
+npx supabase gen types typescript --linked > utils/database.types.ts
+```
 
 ### 参考文献
 
@@ -162,3 +207,7 @@ LangChainおよびOpenAI APIを利用したアプリの学習用リポジトリ
 8. [LangChainの概要と使い方 - Zenn](https://zenn.dev/umi_mori/books/prompt-engineer/viewer/langchain_overview)
 9. [ベクトル特化型データベースサービス「Pinecone」でセマンティック・キーワード検索をやってみた](https://dev.classmethod.jp/articles/dive-deep-into-modern-data-saas-about-pinecone/)
 10. [Next.jsとAI技術を使用したアプリ構築の講座紹介(ChatGPT、DALLE、Whisper、Embedding、LangChain)](https://zenn.dev/hathle/articles/nextjs-supabase-opneai)
+11. [【Supabase入門】認証・DB・リアルタイムリスナーを使ってチャットアプリを作ろう - Zenn](https://zenn.dev/chot/articles/ddd2844ad3ae61)
+12. [supabase](https://supabase.com/)
+13. [nextjs-supabase-image-generation-tutorial - GitHub](https://github.com/haruyasu/nextjs-supabase-image-generation-tutorial)
+14. [DALL-E2 - OpenAI](https://openai.com/dall-e-2)
