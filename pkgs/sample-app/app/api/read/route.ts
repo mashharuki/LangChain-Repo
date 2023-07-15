@@ -16,6 +16,7 @@ const {
  * @returns 
  */
 export async function POST(req: NextRequest) {
+  // リクエスト内容を取得
   const body = await req.json()
   const client = new PineconeClient()
 
@@ -24,6 +25,7 @@ export async function POST(req: NextRequest) {
     environment: REACT_APP_PINECONE_ENVIRONMENT || ''
   })
 
+  // queryPineconeVectorStoreAndQueryLLM メソッドをcall
   const text = await queryPineconeVectorStoreAndQueryLLM(client, indexName, body)
 
   return NextResponse.json({

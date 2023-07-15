@@ -9,6 +9,13 @@ const {
   REACT_APP_OPENAI_API_KEY
 } = process.env;
 
+/**
+ * queryPineconeVectorStoreAndQueryLLM method
+ * @param client 
+ * @param indexName 
+ * @param question 
+ * @returns 
+ */
 export const queryPineconeVectorStoreAndQueryLLM = async (
   client,
   indexName,
@@ -54,10 +61,17 @@ export const queryPineconeVectorStoreAndQueryLLM = async (
     console.log(`Answer: ${result.text}`);
     return result.text
   } else {
-    // 11. Log that there are no matches, so GPT-3 will not be queried
     console.log('Since there are no matches, GPT-3 will not be queried.');
   }
 };
+
+/**
+ * createPineconeIndex method
+ * 新たにインデックス用のベクトルデータベースを作成するメソッド
+ * @param client 
+ * @param indexName 
+ * @param vectorDimension 
+ */
 export const createPineconeIndex = async (
   client,
   indexName,
@@ -89,7 +103,12 @@ export const createPineconeIndex = async (
   }
 };
 
-
+/**
+ * インデックスデータベースを更新するメソッド
+ * @param client 
+ * @param indexName 
+ * @param docs 
+ */
 export const updatePinecone = async (client, indexName, docs) => {
   console.log('Retrieving Pinecone index...');
   // 1. Retrieve Pinecone index
@@ -125,8 +144,10 @@ export const updatePinecone = async (client, indexName, docs) => {
     // 7. Create and upsert vectors in batches of 100
     const batchSize = 100;
     let batch:any = [];
+
     for (let idx = 0; idx < chunks.length; idx++) {
       const chunk = chunks[idx];
+      // ベクトル情報
       const vector = {
         id: `${txtPath}_${idx}`,
         values: embeddingsArrays[idx],
@@ -140,6 +161,7 @@ export const updatePinecone = async (client, indexName, docs) => {
       batch = [...batch, vector]
       // When batch is full or it's the last item, upsert the vectors
       if (batch.length === batchSize || idx === chunks.length - 1) {
+        // upsert
         await index.upsert({
           upsertRequest: {
             vectors: batch,
